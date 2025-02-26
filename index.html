@@ -26,5 +26,13 @@
         <button id = "testButton">Test</button>
       </tr>
     </table>
+
+    <script>
+      document.getElementById("testButton").onclick = function() { test() };
+
+      function test() {
+        document.getElementById("testButton").innerHTML = "Test";
+      }
+    </script>
   </body>
 </html>
