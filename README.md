@@ -7,5 +7,6 @@
   <body>
     <h1>Heading</h1>
     <p>Test paragraph</p>
+    <p>Test para 2</p>
   </body>
 </html>
