@@ -164,6 +164,7 @@ dlcWeapons["necromancer"] = [
 
 unselectedPlayers = [0, 1, 2, 3];
 playerHeroChoices = [null, null, null, null];
+playerCareerChoices = [null, null, null, null];
 
 document.getElementById("rollAll").onclick = function() { rollAll() };
 document.getElementById("reroll1").onclick = function() { rerollOne(0) };
@@ -171,6 +172,9 @@ document.getElementById("reroll2").onclick = function() { rerollOne(1) };
 document.getElementById("reroll3").onclick = function() { rerollOne(2) };
 document.getElementById("reroll4").onclick = function() { rerollOne(3) };
 document.getElementById("rollOne").onclick = function() { rollOne() };
+document.getElementById("finalize").onclick = function () {setCounter() };
+
+setCounter();
 
 function rollCharacter(index, heroPool, useUnselectedPlayers = true)
 {
@@ -198,7 +202,6 @@ function rollCharacter(index, heroPool, useUnselectedPlayers = true)
    }
 
    heroChoice = Math.floor(Math.random() * heroPool.length);
-   console.log(heroPool);
 
    document.getElementById("player" + (playerIndex + 1) + "Text").innerHTML = heroPool[heroChoice].name;
    let image = document.getElementById("player" + (playerIndex + 1) + "HeroImage");
@@ -207,6 +210,7 @@ function rollCharacter(index, heroPool, useUnselectedPlayers = true)
    characterType = heroPool[heroChoice].character;
 
    playerHeroChoices[playerIndex] = characterType;
+   playerCareerChoices[playerIndex] = heroPool[heroChoice].name;
 
    // Weapon choosing
    meleeChoices = [];
@@ -337,4 +341,78 @@ function rollAll() {
       nextPlayer = Math.floor(Math.random() * unselectedPlayers.length);
       rollCharacter(nextPlayer, heroPool);
    }
+}
+
+function setCounter()
+{
+   counterText = "";
+
+   for (i = 0; i < heroes.length; i++)
+   {
+      counterText += addHeroCounter(heroes[i]);
+
+      if (i == 2)
+      {
+         counterText += addHeroCounter(dlcCharacters["grail"]);
+      }
+      else if (i == 5)
+      {
+         counterText += addHeroCounter(dlcCharacters["outcast"]);
+      }
+      else if (i == 8)
+      {  
+         counterText += addHeroCounter(dlcCharacters["sister"]);
+      }
+      else if (i == 11)
+      {
+         counterText += addHeroCounter(dlcCharacters["warrior"]);
+      }
+      else if (i == 14)
+      {
+         counterText += addHeroCounter(dlcCharacters["necromancer"]);
+      }
+   } 
+
+   document.getElementById("counts").innerHTML = counterText;
+}
+
+function addHeroCounter(hero)
+{
+   result = "";
+   addOne = false;
+
+   if (playerCareerChoices.includes(hero.name))
+   {
+      addOne = true;
+   }
+
+   result += hero.name + ": ";
+
+   if (localStorage.getItem(hero.name) != null)
+   {
+      if (addOne)
+      {
+         result += parseInt(localStorage.getItem(hero.name)) + 1;
+      }
+      else
+      {
+         result += parseInt(localStorage.getItem(hero.name));
+      }
+   }
+   else
+   {
+      if (addOne)
+      {
+         result += "1";
+         localStorage.setItem(hero.name, "1");
+      }
+      else
+      {
+         result += "0";
+         localStorage.setItem(hero.name, "0");
+      }
+   }
+
+   result += "<br>";
+   return result;
 }
