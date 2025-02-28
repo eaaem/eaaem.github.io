@@ -179,6 +179,7 @@ setCounter();
 function rollCharacter(index, heroPool, useUnselectedPlayers = true)
 {
    playerIndex = index;
+   console.log(index);
 
    if (useUnselectedPlayers)
    {
@@ -275,8 +276,11 @@ function rollCharacter(index, heroPool, useUnselectedPlayers = true)
    rangedImage.src = rangedChoices[rangedWeaponChoice].imageURL;
    document.getElementById("player" + (playerIndex + 1) + "RangedWeaponText").innerHTML = rangedChoices[rangedWeaponChoice].name;
 
-   // Remove hero choices from the pool
-   unselectedPlayers.splice(index, 1);
+   if (useUnselectedPlayers)
+   {
+      // Remove hero choices from the pool
+      unselectedPlayers.splice(index, 1);
+   }
 
    if (numberOfDlcChars > 0)
    {
@@ -341,6 +345,8 @@ function rollAll() {
       nextPlayer = Math.floor(Math.random() * unselectedPlayers.length);
       rollCharacter(nextPlayer, heroPool);
    }
+
+   document.getElementById("rollOne").disabled = true;
 }
 
 function setCounter()
@@ -388,15 +394,16 @@ function addHeroCounter(hero)
 
    result += hero.name + ": ";
 
-   if (localStorage.getItem(hero.name) != null)
+   if (window.localStorage.getItem(hero.name) != null)
    {
       if (addOne)
       {
-         result += parseInt(localStorage.getItem(hero.name)) + 1;
+         result += parseInt(window.localStorage.getItem(hero.name)) + 1;
+         window.localStorage.setItem(hero.name, parseInt(window.localStorage.getItem(hero.name)) + 1);
       }
       else
       {
-         result += parseInt(localStorage.getItem(hero.name));
+         result += parseInt(window.localStorage.getItem(hero.name));
       }
    }
    else
@@ -404,12 +411,12 @@ function addHeroCounter(hero)
       if (addOne)
       {
          result += "1";
-         localStorage.setItem(hero.name, "1");
+         window.localStorage.setItem(hero.name, "1");
       }
       else
       {
          result += "0";
-         localStorage.setItem(hero.name, "0");
+         window.localStorage.setItem(hero.name, "0");
       }
    }
 
