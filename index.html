@@ -29,6 +29,16 @@
          position: absolute;
       }
 
+      .weaponImages {
+        width: 84px;
+        height: 84px;
+      }
+
+      .heroImages {
+        width: 154px;
+        height: 189px;
+      }
+
       .counter {
          text-align: left;
       }
@@ -47,12 +57,14 @@
           <th colspan="2">Player 4</th>
         </tr>
 
-        <tr>
-          <th colspan="2"><img id="player1HeroImage" src="" /></th>
-          <th colspan="2"><img id="player2HeroImage" src="" /></th>
-          <th colspan="2"><img id="player3HeroImage" src="" /></th>
-          <th colspan="2"><img id="player4HeroImage" src="" /></th>
-        </tr>
+        <div class="heroImages">
+          <tr>
+            <th colspan="2"><img id="player1HeroImage" src="" /></th>
+            <th colspan="2"><img id="player2HeroImage" src="" /></th>
+            <th colspan="2"><img id="player3HeroImage" src="" /></th>
+            <th colspan="2"><img id="player4HeroImage" src="" /></th>
+          </tr>
+        </div>
   
         <tr>
          <th id="player1Text" colspan="2"></th>
@@ -61,16 +73,18 @@
          <th id="player4Text" colspan="2"></th>
         </tr>
 
-        <tr>
-         <th><img id="player1MeleeWeaponImage" src="" /></th>
-         <th><img id="player1RangedWeaponImage" src="" /></th>
-         <th><img id="player2MeleeWeaponImage" src="" /></th>
-         <th><img id="player2RangedWeaponImage" src="" /></th>
-         <th><img id="player3MeleeWeaponImage" src="" /></th>
-         <th><img id="player3RangedWeaponImage" src="" /></th>
-         <th><img id="player4MeleeWeaponImage" src="" /></th>
-         <th><img id="player4RangedWeaponImage" src="" /></th>
-        </tr>
+        <div class="weaponImages">
+          <tr>
+          <th><img id="player1MeleeWeaponImage" src="" /></th>
+          <th><img id="player1RangedWeaponImage" src="" /></th>
+          <th><img id="player2MeleeWeaponImage" src="" /></th>
+          <th><img id="player2RangedWeaponImage" src="" /></th>
+          <th><img id="player3MeleeWeaponImage" src="" /></th>
+          <th><img id="player3RangedWeaponImage" src="" /></th>
+          <th><img id="player4MeleeWeaponImage" src="" /></th>
+          <th><img id="player4RangedWeaponImage" src="" /></th>
+          </tr>
+        </div>
 
         <tr>
          <th colspan="1" id="player1MeleeWeaponText"></th>
