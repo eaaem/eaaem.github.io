@@ -172,14 +172,19 @@ document.getElementById("reroll2").onclick = function() { rerollOne(1) };
 document.getElementById("reroll3").onclick = function() { rerollOne(2) };
 document.getElementById("reroll4").onclick = function() { rerollOne(3) };
 document.getElementById("rollOne").onclick = function() { rollOne() };
-document.getElementById("finalize").onclick = function () {setCounter() };
+document.getElementById("finalize").onclick = function () { setCounter() };
+document.getElementById("exportCounter").onclick = function () { showCounterExport() };
+document.getElementById("importCounter").onclick = function () { showImportCounter() };
+isShowingExport = false;
+isShowingImport = false;
+document.getElementById("submitImport").onclick = function () { importCounterValues() };
 
 setCounter();
+initializeSelectedDLCs();
 
 function rollCharacter(index, heroPool, useUnselectedPlayers = true)
 {
    playerIndex = index;
-   console.log(index);
 
    if (useUnselectedPlayers)
    {
@@ -200,6 +205,9 @@ function rollCharacter(index, heroPool, useUnselectedPlayers = true)
             heroPool.push(dlcCharacters[dlcs[j].value]);
          }
       }
+
+      // Save off DLCs so they stay between sessions
+      localStorage.setItem((playerIndex + 1) + dlcs[j].value, dlcs[j].checked);
    }
 
    heroChoice = Math.floor(Math.random() * heroPool.length);
@@ -349,45 +357,61 @@ function rollAll() {
    document.getElementById("rollOne").disabled = true;
 }
 
-function setCounter()
+function initializeSelectedDLCs()
+{
+   for (i = 0; i < 4; i++)
+   {
+      let dlcs = document.getElementsByName((i + 1) + 'dlc');
+
+      for (j = 0; j < dlcs.length; j++)
+      {
+         if (localStorage.getItem((i + 1) + dlcs[j].value) != null)
+         {
+            dlcs[j].checked = (localStorage.getItem((i + 1) + dlcs[j].value) === "true");
+         }
+      }
+   }
+}
+
+function setCounter(includeIncrements = true)
 {
    counterText = "";
 
    for (i = 0; i < heroes.length; i++)
    {
-      counterText += addHeroCounter(heroes[i]);
+      counterText += addHeroCounter(heroes[i], includeIncrements);
 
       if (i == 2)
       {
-         counterText += addHeroCounter(dlcCharacters["grail"]);
+         counterText += addHeroCounter(dlcCharacters["grail"], includeIncrements);
       }
       else if (i == 5)
       {
-         counterText += addHeroCounter(dlcCharacters["outcast"]);
+         counterText += addHeroCounter(dlcCharacters["outcast"], includeIncrements);
       }
       else if (i == 8)
       {  
-         counterText += addHeroCounter(dlcCharacters["sister"]);
+         counterText += addHeroCounter(dlcCharacters["sister"], includeIncrements);
       }
       else if (i == 11)
       {
-         counterText += addHeroCounter(dlcCharacters["warrior"]);
+         counterText += addHeroCounter(dlcCharacters["warrior"], includeIncrements);
       }
       else if (i == 14)
       {
-         counterText += addHeroCounter(dlcCharacters["necromancer"]);
+         counterText += addHeroCounter(dlcCharacters["necromancer"], includeIncrements);
       }
    } 
 
    document.getElementById("counts").innerHTML = counterText;
 }
 
-function addHeroCounter(hero)
+function addHeroCounter(hero, factorInAdds)
 {
    result = "";
    addOne = false;
 
-   if (playerCareerChoices.includes(hero.name))
+   if (playerCareerChoices.includes(hero.name) && factorInAdds)
    {
       addOne = true;
    }
@@ -422,4 +446,97 @@ function addHeroCounter(hero)
 
    result += "<br>";
    return result;
+}
+
+function showCounterExport()
+{
+   if (isShowingExport)
+   {
+      document.getElementById("exportCounterBox").style = "display: none;"
+      isShowingExport = false;
+   }
+   else
+   {
+      result = "";
+
+      for (i = 0; i < heroes.length; i++)
+      {
+         result += addExportLine(heroes[i]);
+      }
+
+      result += addExportLine(dlcCharacters["grail"]);
+      result += addExportLine(dlcCharacters["outcast"]);
+      result += addExportLine(dlcCharacters["sister"]);
+      result += addExportLine(dlcCharacters["warrior"]);
+      result += addExportLine(dlcCharacters["necromancer"]);
+
+      document.getElementById("exportCounterBox").innerHTML = result;
+      document.getElementById("exportCounterBox").style = "display: block;";
+      isShowingExport = true;
+   }
+}
+
+function addExportLine(hero)
+{
+   result = hero.name;
+
+   if (localStorage.getItem(hero.name) !== null)
+   {
+      result += localStorage.getItem(hero.name) + "|";
+   }
+   else
+   {
+      result += "0|";
+   }
+
+   return result;
+}
+
+function showImportCounter()
+{ 
+   if (!isShowingImport)
+   {
+      document.getElementById("importCounterBox").style = "display: block;"
+      document.getElementById("submitImport").style = "display: block;"
+      isShowingImport = true;
+   }
+   else
+   {
+      document.getElementById("importCounterBox").style = "display: none;"
+      document.getElementById("submitImport").style = "display: none;"
+      isShowingImport = false;
+   }
+}
+
+function importCounterValues()
+{
+   importText = document.getElementById("importCounterBox").value;
+
+   // Hide the submit button/import text field
+   showImportCounter();
+
+   heroName = "";
+   count = "";
+   for (i = -1; i < importText.length - 1; i++)
+   {
+      if (importText[i + 1] == '|')
+      {
+         localStorage.setItem(heroName, count);
+         heroName = "";
+         count = "";
+         continue;
+      }
+
+      if (importText[i + 1] >= '0' && importText[i + 1] <= '9')
+      {
+         count += importText[i + 1];
+      }
+      else
+      {
+         heroName += importText[i + 1];
+      }
+   }
+
+   document.getElementById("importCounterBox").value = "";
+   setCounter(false);
 }
