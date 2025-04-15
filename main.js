@@ -74,10 +74,10 @@ meleeWeapons["Saltzpyre"] = [
    new WeaponData("Flail", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/8/88/Flail_icon.png", ["Witch Hunter Captain", "Bounty Hunter", "Zealot"])
 ]
 meleeWeapons["Sienna"] = [
-   new WeaponData("Sword", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/1/16/Sienna_Weapons_Icon_-_Sword.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Mace", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/2/29/Sienna_Weapons_Icon_-_Mace.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Fire Sword", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/a/a5/Sienna_Weapons_Icon_-_Fire_Sword.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Dagger", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/a/a1/Sienna_Weapons_Icon_-_Dagger.png", ["Battle Wizard", "Pyromancer", "Unchained"])
+   new WeaponData("Sword", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/1/16/Sienna_Weapons_Icon_-_Sword.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Mace", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/2/29/Sienna_Weapons_Icon_-_Mace.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Fire Sword", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/a/a5/Sienna_Weapons_Icon_-_Fire_Sword.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Dagger", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/a/a1/Sienna_Weapons_Icon_-_Dagger.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"])
 ]
 
 let rangedWeapons = {};
@@ -108,11 +108,11 @@ rangedWeapons["Saltzpyre"] = [
    new WeaponData("Crossbow", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/4/41/Saltz_crossbow_icon.png", ["Witch Hunter Captain", "Bounty Hunter", "Zealot"])
 ]
 rangedWeapons["Sienna"] = [
-   new WeaponData("Fireball Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/8/83/Sienna_Weapons_Icon_-_Fireball_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Flamestorm Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/1/1a/Sienna_Weapons_Icon_-_Flamestorm_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Bolt Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/4/45/Sienna_Weapons_Icon_-_Bolt_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Beam Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/6/6d/Sienna_Weapons_Icon_-_Beam_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained"]),
-   new WeaponData("Conflagration Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/2/2a/Sienna_Weapons_Icon_-_Conflagration_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained"])
+   new WeaponData("Fireball Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/8/83/Sienna_Weapons_Icon_-_Fireball_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Flamestorm Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/1/1a/Sienna_Weapons_Icon_-_Flamestorm_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Bolt Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/4/45/Sienna_Weapons_Icon_-_Bolt_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Beam Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/6/6d/Sienna_Weapons_Icon_-_Beam_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"]),
+   new WeaponData("Conflagration Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/2/2a/Sienna_Weapons_Icon_-_Conflagration_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"])
 ]
 
 let dlcCharacters = {};
@@ -129,7 +129,7 @@ dlcWeapons["forgotten"] = [
    new WeaponData("Trollhammer Torpedo", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/7/73/Bardin_Trollhammer_Torpedo.png", ["Ironbreaker", "Outcast Engineer"], false, "Bardin"),
    new WeaponData("Moonfire Bow", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/2/2c/Kerillian_Moonfire_Bow.png", ["Waystalker", "Handmaiden", "Shade", "Sister of the Thorn"], false, "Kerillian"),
    new WeaponData("Griffonfoot Pistols", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/2/2e/Saltzpyre_Griffonfoot_Pistols.png", ["Witch Hunter Captain", "Bounty Hunter", "Zealot"], false, "Saltzpyre"),
-   new WeaponData("Coruscation Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/0/06/Sienna_Coruscation_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained"], false, "Sienna")
+   new WeaponData("Coruscation Staff", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/0/06/Sienna_Coruscation_Staff.png", ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"], false, "Sienna")
 ]
 dlcWeapons["grail"] = [
    new WeaponData("Bretonnian Longsword", "https://static.wikia.nocookie.net/vermintide2_gamepedia_en/images/0/0d/Bretonnian_Longsword.png", ["Mercenary", "Huntsman", "Foot Knight", "Grail Knight"], true, "Kruber"),
